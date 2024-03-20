@@ -1,0 +1,60 @@
+<div class="tab-container">
+    <mat-form-field>
+        <mat-label>Rechercher</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+      </mat-form-field>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+        <ng-container matColumnDef="MATRICULE">
+            <th mat-header-cell *matHeaderCellDef> Matricule </th>
+            <td mat-cell *matCellDef="let element"> {{element.MATRICULE}} </td>
+          </ng-container>
+        
+        <ng-container matColumnDef="FONCTION_AG">
+            <th mat-header-cell *matHeaderCellDef> Fonction </th>
+            <td mat-cell *matCellDef="let element"> {{element.TYPE_AG}} </td>
+          </ng-container>
+        
+        <ng-container matColumnDef="NOM_AG">
+            <th mat-header-cell *matHeaderCellDef> Nom </th>
+            <td mat-cell *matCellDef="let element"> {{element.NOM_AG}} </td>
+          </ng-container>
+        
+        <ng-container matColumnDef="ADRESSE_AG">
+            <th mat-header-cell *matHeaderCellDef> Adresse </th>
+            <td mat-cell *matCellDef="let element"> {{element.ADRESSE_AG}} </td>
+          </ng-container>
+        
+        <ng-container matColumnDef="TEL_AG">
+            <th mat-header-cell *matHeaderCellDef> Telephone </th>
+            <td mat-cell *matCellDef="let element"> {{element.TEL_AG}} </td>
+          </ng-container>
+        
+        <ng-container matColumnDef="ACTIVATION">
+            <th mat-header-cell *matHeaderCellDef> Activation </th>
+            <td mat-cell *matCellDef="let element"> {{element.ACTIVATION}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="ACTION">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let element"> 
+            <button mat-icon-button color="primary">
+              <mat-icon><img src="../../../assets/img/edit_25px.png" alt=""></mat-icon>
+            </button> 
+            <button (click)="deleteUser(element.MATRICULE)" mat-icon-button color="primary">
+              <mat-icon><img src="../../../assets/img/trash_40px.png" alt=""></mat-icon>
+            </button> 
+          </td>
+        </ng-container>
+        
+        <tr class="thS" mat-header-row *matHeaderRowDef="thList"></tr>
+        <tr mat-row *matRowDef="let row; columns: thList;"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">Aucune donnée ne correspond à "{{input.value}}"</td>
+          </tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+    </mat-paginator>
+</div>

@@ -1,0 +1,40 @@
+<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100 ">
+				<form class="login100-form " #lgForm = "ngForm" (ngSubmit)="onSubmit(lgForm)">
+					<span class="login100-form-title ">
+						Login
+					</span>
+
+					<div class="wrap-input100 ">
+						<span class="label-input100">Nom d'utilisateur</span>
+						<input class="input100" type="text" name="pseudo" placeholder="Saisir votre nom d'utilisateur" ngModel>
+						<span class="focus-input100" data-symbol="&#xf206;"></span>
+					</div>
+
+					<div class="wrap-input100 ">
+						<span class="label-input100">Mot de passe</span>
+						<input class="input100" type="password" name="mdp" placeholder="Saisir votre mot de passe" ngModel>
+						<span class="focus-input100" data-symbol="&#xf190;"></span>
+					</div>
+					
+					<div class="text-right ">
+						<a href="#">
+							Mot de passe oublié
+						</a>
+					</div>
+					
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn">
+								Connexion
+							</button>
+						</div>
+					</div>
+
+					
+				</form>
+			</div>
+		</div>
+	</div>

@@ -1,0 +1,55 @@
+h1 {
+    padding: 0 1rem;
+}
+
+h2 {padding: 1rem;}
+
+mat-toolbar{
+    background: #0b0e14;
+    transition: 300ms;
+    position:fixed;
+    top:0;
+    z-index: 2;
+}
+
+mat-sidenav-container {
+    transition: 300ms;
+    height:100%;
+    
+}
+
+.it-sp{
+    color: white;
+}
+
+// Move the content down so that it won't be hidden by the toolbar
+mat-sidenav {
+    transition: 300ms;
+    padding-top: 3.5rem;
+    background: #0f1118;
+    @media screen and (min-width: 600px) {
+      padding-top: 4rem;
+    }
+
+    .entry{
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding:0.75rem;
+        transition-duration: 300ms;
+    }
+  }
+
+// Move the content down so that it won't be hidden by the toolbar
+mat-sidenav-content{
+    transition: 300ms;
+    padding-top: 3.5rem;
+    @media screen and (min-width: 600px) {
+        padding-top: 4rem;
+    }
+}
+
+.expanded {
+    width: 250px;   
+    transition-duration: 300ms;
+}

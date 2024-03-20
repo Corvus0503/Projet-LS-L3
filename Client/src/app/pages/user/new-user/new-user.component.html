@@ -1,0 +1,121 @@
+<div class="step-cont">
+  <h1>Nouvel Utilisateur</h1>
+  <mat-stepper
+  class="example-stepper"
+  [orientation]="(stepperOrientation | async)!"
+  >
+  <mat-step [stepControl]="mergedFormGroup" label="Info perso">
+    <form [formGroup]="mergedFormGroup">
+      <div class="inp-cont">
+          <div class="cont1">
+              <mat-form-field appearance="outline">
+                  <mat-label>Nom</mat-label>
+                  <input matInput  formControlName="NOM_AG" required>
+                </mat-form-field><br>
+                <mat-form-field appearance="outline">
+                  <mat-label>Prenom</mat-label>
+                  <input matInput  formControlName="PRENOM_AG" required>
+                </mat-form-field><br>
+                <mat-form-field appearance="outline">
+                  <mat-label>Prenom</mat-label>
+                  <input matInput  formControlName="PRENOM_AG" required>
+                </mat-form-field><br>
+                <mat-form-field appearance="outline">
+                  <mat-label>Prenom</mat-label>
+                  <input matInput  formControlName="PRENOM_AG" required>
+                </mat-form-field><br>
+                <mat-form-field appearance="outline">
+                  <mat-label>Prenom</mat-label>
+                  <input matInput  formControlName="PRENOM_AG" required>
+                </mat-form-field><br>
+                
+          </div>
+          <div class="cont2">
+              <mat-form-field appearance="outline">
+                  <mat-label>Adresse</mat-label>
+                  <input matInput  formControlName="ADRESSE_AG" required>
+                </mat-form-field><br>
+                <mat-form-field appearance="outline">
+                  <mat-label>Email</mat-label>
+                  <input matInput  formControlName="MAIL_AG" required>
+                </mat-form-field><br>
+                <mat-form-field appearance="outline">
+                  <mat-label>Contact</mat-label>
+                  <input matInput  formControlName="TEL_AG" required>
+                </mat-form-field>
+          </div>
+      </div>
+      
+      <div>
+        <button mat-button matStepperNext>Suivant</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="mergedFormGroup" label="Fonction">
+    <form [formGroup]="mergedFormGroup">
+      <div class="inp-cont" >
+        <div class="cont1">
+          <mat-form-field appearance="outline">
+            <mat-label>Matricule</mat-label>
+            <input matInput  formControlName="MATRICULE" required>
+          </mat-form-field><br>
+          <mat-form-field appearance="outline">
+            <mat-label>Pseudo</mat-label>
+            <input matInput  formControlName="NOM_UTIL_AG" required>
+          </mat-form-field><br>
+          <mat-form-field appearance="outline">
+            <mat-label>Fonction</mat-label>
+            <input matInput  formControlName="FONCTION_AG" required>
+          </mat-form-field>
+      </div>
+      <div class="cont2">
+        <mat-form-field appearance="outline">
+          <mat-label>Code Division</mat-label>
+          <input matInput  formControlName="CODE_DIVISION" required>
+        </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Type Compte</mat-label>
+              <mat-select formControlName="TYPE_AG">
+                  <mat-option value="CD">CD</mat-option>
+                  <mat-option value="BAG">BAG</mat-option>
+                  <mat-option value="Admin">Admin</mat-option>
+                </mat-select>
+            </mat-form-field>
+      </div>
+      </div>
+      
+      <div>
+        <button mat-button matStepperPrevious>Précedent</button>
+        <button mat-button matStepperNext>Suivant</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="mergedFormGroup" label="Sécurité">
+    <form [formGroup]="mergedFormGroup">
+      <div class="cont3">
+          <mat-form-field appearance="outline">
+              <mat-label>MMot de passe</mat-label>
+              <input matInput  formControlName="PASSWORD" required>
+            </mat-form-field><br>
+            <mat-form-field appearance="outline">
+              <mat-label>Confirmer mot de passe</mat-label>
+              <input matInput  formControlName="C_PASSWORD" required>
+            </mat-form-field><br>
+      </div>
+      
+      <div>
+        <button mat-button matStepperPrevious>Précedant</button>
+        <button mat-button matStepperNext>Suivant</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <button mat-button (click)="onsubmit()">Enregistrer</button>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+    </div>
+  </mat-step>
+</mat-stepper>
+</div>

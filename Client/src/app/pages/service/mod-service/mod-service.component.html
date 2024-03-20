@@ -1,0 +1,66 @@
+<button mat-button color="primary" type="button" (click)="onOpenModal()">
+    Ajouter
+</button>
+
+<div class="modal" id="myModal">
+    <div class="modal-overlay">
+        <form class="modal-pop" (ngSubmit)="onsubmit()" action="">
+            <div class="inp-cont">
+                <div class="cont1">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Code</mat-label>
+                        <input matInput  formControlName="CODE_SER" required>
+                      </mat-form-field><br>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Libelle</mat-label>
+                        <input matInput  formControlName="LIBELLE" required>
+                      </mat-form-field><br>
+                      <mat-form-field appearance="outline">
+                        <mat-label>ENTETE1</mat-label>
+                        <input matInput  formControlName="ENTETE1" required>
+                      </mat-form-field><br>
+                      <mat-form-field appearance="outline">
+                        <mat-label>ENTETE2</mat-label>
+                        <input matInput  formControlName="ENTETE2" required>
+                      </mat-form-field><br>
+                      <mat-form-field appearance="outline">
+                        <mat-label>ENTETE3</mat-label>
+                        <input matInput  formControlName="ENTETE3" required>
+                      </mat-form-field><br>
+                      <mat-form-field appearance="outline">
+                        <mat-label>ENTETE4</mat-label>
+                        <input matInput  formControlName="ENTETE4" required>
+                      </mat-form-field><br>
+                      
+                </div>
+                <div class="cont2">                      
+                      <mat-form-field appearance="outline">
+                        <mat-label>ENTETE5</mat-label>
+                        <input matInput  formControlName="ENTETE5" required>
+                      </mat-form-field><br>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Sigle</mat-label>
+                        <input matInput  formControlName="SIGLE" required>
+                      </mat-form-field><br>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Ville</mat-label>
+                        <input matInput  formControlName="VILLE" required>
+                      </mat-form-field><br>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Adresse</mat-label>
+                        <input matInput  formControlName="ADRESSE" required>
+                      </mat-form-field><br>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Contact</mat-label>
+                        <input matInput  formControlName="CONTACT" required>
+                      </mat-form-field><br>
+                      <div>
+                        <button type="submit">Enregistrer</button>
+                        <button mat-button color="Danger" (click)="onCloseModal()">Annuler</button>
+                      </div>
+                </div>
+            </div><br>
+            
+        </form>
+    </div>
+</div>

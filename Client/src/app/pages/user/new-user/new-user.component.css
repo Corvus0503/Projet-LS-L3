@@ -1,0 +1,32 @@
+.example-stepper {
+    margin-top: 8px;
+  }
+  
+  .mat-mdc-form-field {
+    margin-top: 16px;
+  }
+
+.step-cont{
+    margin: 30px;
+}
+
+.inp-cont{
+    display: flex;
+    margin-left: 230px;
+}
+.cont1{
+    margin-right: 40px;
+}
+
+.cont1 mat-form-field{
+    width: 300px;
+}
+.cont2 mat-form-field{
+    width: 300px;
+}
+.cont3{
+    margin-left: 20px;
+}
+.cont3 mat-form-field{
+    width: 600px;
+}

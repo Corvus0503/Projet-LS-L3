@@ -1,0 +1,27 @@
+.tab-container{
+  margin: 30px;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 1158px;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 16px;
+  }
+
+  thead{
+    background-color: #f2f2f2;
+    border-bottom: ridge;
+    font-weight: bolder;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+.thS{
+  font-weight: bold;
+}
