@@ -44,7 +44,7 @@ export class UserComponent implements AfterViewInit {
     this.getUSer()
   }
 
-  @ViewChild(MatSort) sort = new MatSort();
+  @ViewChild(MatSort) sort :any = MatSort;
   @ViewChild(MatPaginator) paginator :any = MatPaginator;
 
   ngAfterViewInit() {

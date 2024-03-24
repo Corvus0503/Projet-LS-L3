@@ -38,7 +38,8 @@ export class ServiceComponent implements AfterViewInit {
     "SIGLE", 
     "VILLE", 
     "ADRESSE", 
-    "CONTACT"
+    "CONTACT",
+    "ACTION"
   ]
 
   constructor(
@@ -76,7 +77,7 @@ export class ServiceComponent implements AfterViewInit {
       cancelButtonText: "Annuler"
     }).then((result) => {
       if (result.isConfirmed) {
-        this._api.delete('/admin/', id).subscribe((res:any) => {
+        this._api.delete('/service/', id).subscribe((res:any) => {
           console.log('user deleted successfully!');
           this.getService()
         })

@@ -38,7 +38,9 @@ export class AppComponent {
   isMobile= true;
   isCollapsed = false;
   isLogin: boolean = false
-  userInfo : Agent[] = []
+  userInfo : any
+  userAv: string = ''
+  userName: string = ''
 
   navList = [
     {name: "Dashboard", icon: "../assets/img/dashboard_layout_28px.png", path: "/dashboard"},
@@ -59,8 +61,13 @@ export class AppComponent {
       this.isLogin = true
     }
 
-    this.userInfo = this._auth.getUserDetails()
-    
+    this.userInfo = this._auth.getUserDetails();
+    if (this.userInfo && this.userInfo.length > 0) {
+      this.userAv = '../assets/uploads/' + this.userInfo[0].PHOTO;
+      this.userName = this.userInfo[0].NOM_UTIL_AG;
+      console.log("user:", this.userAv);
+    }
+
     
     this.observer.observe(['(max-width: 800px)']).subscribe((screenSize) => {
       if(screenSize.matches){
@@ -69,6 +76,14 @@ export class AppComponent {
         this.isMobile = false;
       }
     });
+  }
+
+  nonPad(){
+    if(this.isLogin){
+      return 'withTop'
+    }else{
+      return 'noTop'
+    }
   }
 
   toggleMenu() {

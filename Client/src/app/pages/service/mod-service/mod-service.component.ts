@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import { ApiService } from '../../../services/api.service';
 import Swal from 'sweetalert2';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-mod-service',
@@ -15,6 +16,9 @@ import Swal from 'sweetalert2';
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
+    FormsModule,
+    CommonModule,
+    ReactiveFormsModule
   ],
   templateUrl: './mod-service.component.html',
   styleUrl: './mod-service.component.css'
@@ -54,7 +58,9 @@ export class ModServiceComponent {
     }
   }
 
-  onsubmit(){
+  onsubmit(event: Event){
+    event.preventDefault();
+    console.log(this.mergedFormGroup.value)
     Swal.fire({
       title: "Etes vous sûr?",
       text: "Vous allez enregistrer ce service",
@@ -75,6 +81,7 @@ export class ModServiceComponent {
           text: "Un nouveau service a été enregistré.",
           icon: "success"
         });
+        this.onCloseModal()
       }
     });
     

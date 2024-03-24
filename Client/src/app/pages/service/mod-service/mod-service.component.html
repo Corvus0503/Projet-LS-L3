@@ -4,7 +4,7 @@
 
 <div class="modal" id="myModal">
     <div class="modal-overlay">
-        <form class="modal-pop" (ngSubmit)="onsubmit()" action="">
+        <form [formGroup]="mergedFormGroup" class="modal-pop" action="">
             <div class="inp-cont">
                 <div class="cont1">
                     <mat-form-field appearance="outline">
@@ -55,7 +55,7 @@
                         <input matInput  formControlName="CONTACT" required>
                       </mat-form-field><br>
                       <div>
-                        <button type="submit">Enregistrer</button>
+                        <button mat-button color="primary" type="button" (click)="onsubmit($event)">Enregistrer</button>
                         <button mat-button color="Danger" (click)="onCloseModal()">Annuler</button>
                       </div>
                 </div>

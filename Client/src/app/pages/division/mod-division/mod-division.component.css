@@ -1,0 +1,50 @@
+.modal{
+    display: none;
+}
+.modal-pop {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    -webkit-animation: animatezoom 0.4s;
+    animation: animatezoom 0.4s
+  }
+
+  @-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+  }
+    
+  @keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+  }
+
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.inp-cont{
+    display: flex;
+}
+.cont1{
+    margin-right: 40px;
+}
+
+.cont1 mat-form-field{
+    width: 300px;
+}
+.cont2 mat-form-field{
+    width: 300px;
+}
+.btn-cont{
+    margin-left: 500px;
+}

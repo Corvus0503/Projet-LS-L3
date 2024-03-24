@@ -372,10 +372,10 @@ app.get('/validation',(req,res)=>{
 
 //historique controller
 
-app.get('/historique/:date', function (req, res) {
-    const { date } = req.params;
-    getHistorique(req, res, date);
-  })
+app.get('/historique/:an', function (req, res) {
+    const { an } = req.params;
+    getHistorique(req, res, an);
+})
 
 app.post('/historique', function (req, res) {
     let { HIST_PREV, HIST_BES, ANNEE} = req.body

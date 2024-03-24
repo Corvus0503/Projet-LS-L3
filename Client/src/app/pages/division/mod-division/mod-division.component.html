@@ -1,0 +1,32 @@
+<button mat-button color="primary" type="button" (click)="onOpenModal()">
+    Ajouter
+</button>
+
+<div class="modal" id="myModal">
+    <div class="modal-overlay">
+        <form [formGroup]="mergedFormGroup" class="modal-pop" action="">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Code</mat-label>
+                    <input matInput  formControlName="CODE_DIVISION" required>
+                  </mat-form-field><br>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Service</mat-label>
+                    <mat-select formControlName="CODE_SER"  >
+                      @for (servce of serName; track servce) {
+                        <mat-option [value]="servce.CODE_SER">{{servce.LIBELLE}}</mat-option>
+                      }
+                    </mat-select>
+                  </mat-form-field><br>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Libellé</mat-label>
+                    <input matInput  formControlName="LABEL_DIVISION" required>
+                  </mat-form-field><br>                   
+    
+                    <div>
+                        <button mat-button color="primary" type="button" (click)="onsubmit($event)">Enregistrer</button>
+                        <button mat-button color="Danger" (click)="onCloseModal()">Annuler</button>
+                    </div>
+            
+        </form>
+    </div>
+</div>

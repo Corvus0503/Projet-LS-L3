@@ -11,6 +11,17 @@ mat-toolbar{
     top:0;
     z-index: 2;
 }
+.avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+
+.info-cont{
+    margin-left: 85%;
+    color: white;
+}
 
 mat-sidenav-container {
     transition: 300ms;
@@ -41,7 +52,12 @@ mat-sidenav {
   }
 
 // Move the content down so that it won't be hidden by the toolbar
-mat-sidenav-content{
+
+.noTop{
+    padding-top: 0;
+}
+
+.withTop{
     transition: 300ms;
     padding-top: 3.5rem;
     @media screen and (min-width: 600px) {

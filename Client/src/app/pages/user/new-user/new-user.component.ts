@@ -8,7 +8,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
-import {AsyncPipe} from '@angular/common';
+import {AsyncPipe, CommonModule} from '@angular/common';
 import { ApiService } from '../../../services/api.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -20,6 +20,7 @@ import Swal from 'sweetalert2';
   imports: [
     MatStepperModule,
     FormsModule,
+    CommonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,

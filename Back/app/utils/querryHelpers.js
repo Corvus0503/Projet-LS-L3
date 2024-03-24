@@ -232,22 +232,12 @@ const getService = async (req, res) => {
   }
 };
 
-const addService = async (CODE_SER, LIBELLE, ENTETE1, ENTETE2, ENTETE3, ENTETE4, ENTETE5, SIGLE, VILLE, ADRESSE, CONTACT) => {
+const addService = async (req, res, CODE_SER, LIBELLE, ENTETE1, ENTETE2, ENTETE3, ENTETE4, ENTETE5, SIGLE, VILLE, ADRESSE, CONTACT) => {
   try {
     const connection = await getConnection();
-    const result = await connection.execute('INSERT INTO SERVICE(CODE_SER, LIBELLE, ENTETE1, ENTETE2, ENTETE3, ENTETE4, ENTETE5, SIGLE, VILLE, ADRESSE, CONTACT) VALUES (:CODE_SER, :LIBELLE, :ENTETE1, :ENTETE2, :ENTETE3, :ENTETE4, :ENTETE5, :SIGLE, :VILLE, :ADRESSE, :CONTACT)', {
-      CODE_SER: CODE_SER,
-      LIBELLE: LIBELLE,
-      ENTETE1: ENTETE1,
-      ENTETE2: ENTETE2,
-      ENTETE3: ENTETE3,
-      ENTETE4: ENTETE4,
-      ENTETE5: ENTETE5,
-      SIGLE: SIGLE,
-      VILLE: VILLE,
-      ADRESSE: ADRESSE,
-      CONTACT: CONTACT
-    });
+    const result = await connection.execute('INSERT INTO SERVICE(CODE_SER, LIBELLE, ENTETE1, ENTETE2, ENTETE3, ENTETE4, ENTETE5, SIGLE, VILLE, ADRESSE, CONTACT) VALUES (:CODE_SER, :LIBELLE, :ENTETE1, :ENTETE2, :ENTETE3, :ENTETE4, :ENTETE5, :SIGLE, :VILLE, :ADRESSE, :CONTACT)', 
+    [CODE_SER, LIBELLE, ENTETE1, ENTETE2, ENTETE3, ENTETE4, ENTETE5, SIGLE, VILLE, ADRESSE, CONTACT]);
+    res.json(result.rows);
     await connection.commit();
     await connection.close();
     return result.rows;
@@ -283,10 +273,11 @@ const updateService = async (CODE_SER, LIBELLE, ENTETE1, ENTETE2, ENTETE3, ENTET
   }
 };
 
-const deleteService = async (id) => {
+const deleteService = async (req, res ,id) => {
   try {
     const connection = await getConnection();
     const result = await connection.execute('DELETE FROM SERVICE WHERE CODE_SER = :id', [id]);
+    res.json(result.rows);
     await connection.commit();
     await connection.close();
     return result.rows;
@@ -844,12 +835,22 @@ const addHistorique = async(req,res,HIST_PREV, HIST_BES, ANNEE)=>{
   }
 }
 
-const getHistorique = async(req,res, date)=>{
-  const query = 'SELECT * FROM HISTORIQUE WHERE ANNEE=:date'
+const getHistorique = async(req,res, an)=>{
+  const query = 'SELECT * FROM HISTORIQUE WHERE ANNEE=:an'
   try {
       const connection = await getConnection();
-      const result=await connection.execute(query,[date]);
-      res.json(result.rows);
+      const result=await connection.execute(query, [an]);
+      const formattedRows = [];
+        for (const row of result.rows) {
+            const formattedRow = {
+                NUM_HIST: row.NUM_HIST,
+                HIST_PREV: row.HIST_PREV ? (await row.HIST_PREV.getData()) : null,
+                HIST_BES: row.HIST_BES ? (await row.HIST_BES.getData()) : null,
+                ANNEE: row.ANNEE
+            };
+            formattedRows.push(formattedRow);
+        }
+      res.json(formattedRows);
       await connection.close();
   } catch (error) {
       console.error(error);

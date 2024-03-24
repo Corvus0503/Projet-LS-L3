@@ -19,6 +19,15 @@ export class ApiService {
     )
   }
 
+  find(url: any, id: any): Observable<any> {
+    return this.httpClient.get(`${this.baseURL}${url}${id}`)
+
+    .pipe(
+
+      catchError(this.errorHandler)
+
+    )
+   }
   postTypeRequest(url: any, payload: any): Observable<any> {
     return this.httpClient.post(`${this.baseURL}${url}`, payload, {headers: this.httpHeaders})
     .pipe(

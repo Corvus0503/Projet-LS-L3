@@ -8,6 +8,8 @@ import { AuthService } from './auth.service';
 })
 export class AuthGuardService {
 
+  act = this._authService.getUserDetails()
+
   constructor(
     private _authService: AuthService,
     private _router: Router
@@ -16,7 +18,7 @@ export class AuthGuardService {
     next: ActivatedRouteSnapshot, 
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
-    if (this._authService.getUserDetails()){
+    if (this._authService.getUserDetails() && this.act[0].ACTIVATION == "Activé"){
       return true
     }
     this._router.navigate(['/login'])

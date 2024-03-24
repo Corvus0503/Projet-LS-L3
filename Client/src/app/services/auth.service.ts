@@ -16,7 +16,7 @@ export class AuthService {
 
   setDataInLocalStorage(variableName: string, data: any) {
       if (typeof localStorage !== 'undefined') {
-          localStorage.setItem(variableName, JSON.parse(data));
+          localStorage.setItem(variableName, data);
       }
   }
 
