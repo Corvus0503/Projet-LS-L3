@@ -1,55 +1,64 @@
 <div class="his-cont">
+    <h1>Historique des prévisions</h1>
     <div>
         <form [formGroup]="mergedFormGroup" action="">
             <mat-form-field appearance="outline">
                 <mat-label>Année</mat-label>
                 <input matInput  formControlName="an" required>
             </mat-form-field>
-            <button mat-button (click)="getHistorique()">Afficher</button>
+            <button mat-button color="primary" (click)="getHistorique()">Afficher</button>
         </form>
     </div>
     <div>
         <div *ngIf="historiques == null">
-            Veuillez saisir une année
+            <h3>Veuillez saisir une année</h3>
         </div>
-        <div class="custom-table-responsive">
+        <div *ngIf="historiques != null">
+            <div class="custom-table-responsive" id="htmlData">
             
-            <table class="custom-table">
-                <thead> 
-                    <tr>
-                        <td colspan="5">
-                            <div className="custom-logo-container">
-                                <img style="height: 15%; width: 20%;" src="../../../assets/img/Minister de Finance et de Budget.jfif" alt="">
-                            </div>
-                            <div class="custom-h3">
-                                Budget Prévisionnel Année {{mergedFormGroup.value.an}}
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th align="center">SOA CODE</th>
-                        <th align="center">SOA</th>
-                        <th align="center">PCOP</th>
-                        <th align="center">Désigantion Compte</th>
-                        <th align="center">Prix Total(Ariary) </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let item of listBes">
-                        <td>{{item.CODE_SER}}</td>
-                        <td>{{item.LIBELLE}}</td>
-                        <td>{{item.NUM_CMPT}}</td>
-                        <td>{{item.DESIGNATION_CMPT}}</td>
-                        <td>{{item.TOTAL}}</td>
-                    </tr>
-                    <tr>  
-                        <th > Total = </th>
-                        <td colspan="3"></td>
-                        <td >{{smm}}</td>
-                    </tr>
-                </tbody>
-            </table>
+                <table class="custom-table">
+                    <thead> 
+                        <tr>
+                            <td colspan="5">
+                                <div className="custom-logo-container">
+                                    <img style="height: 15%; width: 20%;" src="../../../assets/img/Minister de Finance et de Budget.jfif" alt="">
+                                </div>
+                                <div class="custom-h3">
+                                    Budget Prévisionnel Année {{mergedFormGroup.value.an}}
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th align="center">SOA CODE</th>
+                            <th align="center">SOA</th>
+                            <th align="center">PCOP</th>
+                            <th align="center">Désigantion Compte</th>
+                            <th align="center">Prix Total(Ariary) </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of listBes">
+                            <td>{{item.CODE_SER}}</td>
+                            <td>{{item.LIBELLE}}</td>
+                            <td>{{item.NUM_CMPT}}</td>
+                            <td>{{item.DESIGNATION_CMPT}}</td>
+                            <td>{{item.TOTAL}}</td>
+                        </tr>
+                        <tr>  
+                            <th > Total = </th>
+                            <td colspan="3"></td>
+                            <td >{{smm}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+            </div>
+            <div class="btn-cont">
+                <button mat-raised-button color="primary" (click)="openPDF()">imprimer</button>
+            </div>
         </div>
+        
+        
     </div>
 </div>
 

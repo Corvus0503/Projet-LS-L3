@@ -8,8 +8,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 import Swal from 'sweetalert2';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -22,15 +24,19 @@ import Swal from 'sweetalert2';
     MatButtonModule,
     MatFormFieldModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    RouterLink
   ],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css'
 })
 export class UserComponent implements AfterViewInit {
   dataSource : any;
+  isLoaded = false
 
   thList = [
+    "PHOTO",
     "MATRICULE",
     "FONCTION_AG",
     "NOM_AG",
@@ -44,8 +50,18 @@ export class UserComponent implements AfterViewInit {
     this.getUSer()
   }
 
-  @ViewChild(MatSort) sort :any = MatSort;
-  @ViewChild(MatPaginator) paginator :any = MatPaginator;
+  @ViewChild(MatSort, {static: false})
+  set sort(value: MatSort) {
+    if (this.dataSource){
+      this.dataSource.sort = value;
+    }
+  }
+  @ViewChild(MatPaginator, {static: false})
+  set paginator(value: MatPaginator) {
+    if (this.dataSource){
+      this.dataSource.paginator = value;
+    }
+  }
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
@@ -53,13 +69,19 @@ export class UserComponent implements AfterViewInit {
   }
 
   constructor(
-    private _api: ApiService
+    private _api: ApiService,
+    private _router: Router
   ){}
 
   getUSer(){
     this._api.getAll('/admin/userList').subscribe((data: Agent[]) => {
       this.dataSource = new MatTableDataSource(data);
+      this.isLoaded = true
     })
+  }
+
+  getUserDet(id: string){
+    
   }
 
   deleteUser(id: string){
@@ -88,6 +110,10 @@ export class UserComponent implements AfterViewInit {
     });
     
     
+  }
+
+  newUser(){
+    this._router.navigate(['/PB/new_user'])
   }
 
   applyFilter(event: Event) {

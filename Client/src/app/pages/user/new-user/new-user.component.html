@@ -16,8 +16,8 @@
                   <mat-label>Prenom</mat-label>
                   <input matInput  formControlName="PRENOM_AG" required>
                 </mat-form-field><br>
-                <mat-form-field>
-                  <mat-label>Select</mat-label>
+                <mat-form-field appearance="outline">
+                  <mat-label>Sexe</mat-label>
                   <mat-select formControlName="GENRE">
                     <mat-option value="M">Homme</mat-option>
                     <mat-option value="F">Femme</mat-option>
@@ -67,7 +67,7 @@
         <mat-form-field appearance="outline">
           <mat-label>Code Division</mat-label>
           <input matInput  formControlName="CODE_DIVISION" required>
-        </mat-form-field>
+        </mat-form-field><br>
             <mat-form-field appearance="outline">
               <mat-label>Type Compte</mat-label>
               <mat-select formControlName="TYPE_AG">
@@ -85,31 +85,12 @@
       </div>
     </form>
   </mat-step>
-  <mat-step [stepControl]="mergedFormGroup" label="Sécurité">
-    <form [formGroup]="mergedFormGroup">
-      <div class="cont3">
-          <mat-form-field appearance="outline">
-              <mat-label>MMot de passe</mat-label>
-              <input matInput  formControlName="PASSWORD" required>
-            </mat-form-field><br>
-            <mat-form-field appearance="outline">
-              <mat-label>Confirmer mot de passe</mat-label>
-              <input matInput  formControlName="C_PASSWORD" required>
-            </mat-form-field><br>
-      </div>
-      
-      <div>
-        <button mat-button matStepperPrevious>Précedant</button>
-        <button mat-button matStepperNext>Suivant</button>
-      </div>
-    </form>
-  </mat-step>
   <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    <button mat-button (click)="onsubmit()">Enregistrer</button>
-    <p>You are now done.</p>
+    <ng-template matStepLabel>Terminé</ng-template>
+    <p>C'est la denièrre étape.</p>
+    <button mat-raised-button color="primary" (click)="onsubmit()">Enregistrer</button>
     <div>
-      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperPrevious>Précedant</button>
     </div>
   </mat-step>
 </mat-stepper>

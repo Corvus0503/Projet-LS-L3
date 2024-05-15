@@ -25,3 +25,10 @@
   .thS{
     font-weight: bold;
   }
+
+.head-cont{
+  display: flex;
+}
+.but-cont{
+  margin-left: 80%;
+}

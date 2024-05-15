@@ -48,8 +48,18 @@ export class DivisionComponent implements AfterViewInit {
     console.log(this.dataSource)
   }
 
-  @ViewChild(MatSort) sort: any = MatSort;
-  @ViewChild(MatPaginator) paginator :any = MatPaginator;
+  @ViewChild(MatSort, {static: false})
+  set sort(value: MatSort) {
+    if (this.dataSource){
+      this.dataSource.sort = value;
+    }
+  }
+  @ViewChild(MatPaginator, {static: false})
+  set paginator(value: MatPaginator) {
+    if (this.dataSource){
+      this.dataSource.paginator = value;
+    }
+  }
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;

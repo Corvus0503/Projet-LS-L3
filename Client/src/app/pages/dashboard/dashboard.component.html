@@ -1,2 +1,8 @@
 
-<h1>DASHBOARD</h1>
+<div class="chart-container">
+    <h1>Tableau de bord</h1>
+    <mat-spinner *ngIf="realdata == null"></mat-spinner>
+    <div *ngIf="realdata != null">
+        <canvas  id="MyChart" >{{ chart }}</canvas>
+    </div>
+</div>

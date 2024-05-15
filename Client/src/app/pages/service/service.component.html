@@ -1,12 +1,18 @@
 <div class="tab-container">
-    <mat-form-field>
+    <h1>Service</h1>
+    <div class="head-cont">
+      <mat-form-field>
         <mat-label>Rechercher</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
-    </mat-form-field>
-    
-    <app-mod-service></app-mod-service>
+      </mat-form-field>
+      <div class="but-cont">
+        <app-mod-service [donnees]=donnee (donneesChanged)="infoChangedHandler"></app-mod-service>
+      </div>
+      
+    </div>
 
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <mat-spinner *ngIf="!isLoaded"></mat-spinner>
+    <table *ngIf="isLoaded" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <ng-container matColumnDef="CODE_SER">
             <th mat-header-cell *matHeaderCellDef> Code </th>
             <td mat-cell *matCellDef="let element"> {{element.CODE_SER}} </td>
@@ -40,7 +46,7 @@
         <ng-container matColumnDef="ACTION">
           <th mat-header-cell *matHeaderCellDef> Action </th>
           <td mat-cell *matCellDef="let element"> 
-            <button mat-icon-button color="primary">
+            <button mat-icon-button color="primary" (click)="getInfo(element)">
               <mat-icon><img src="../../../assets/img/edit_25px.png" alt=""></mat-icon>
             </button> 
             <button (click)="deleteService(element.CODE_SER)" mat-icon-button color="primary">

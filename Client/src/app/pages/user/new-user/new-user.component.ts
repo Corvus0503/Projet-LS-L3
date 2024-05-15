@@ -44,8 +44,7 @@ export class NewUserComponent {
     NOM_UTIL_AG: ['', Validators.required],
     CODE_DIVISION: ['', Validators.required],
     FONCTION_AG: ['', Validators.required],
-    PASSWORD: ['', Validators.required],
-    C_PASSWORD: ['', Validators.required]
+    PASSWORD: ['1234', Validators.required],
   });
 
 
@@ -85,7 +84,7 @@ export class NewUserComponent {
             PRENOM_AG: this.mergedFormGroup.value.PRENOM_AG,
             ADRESSE_AG: this.mergedFormGroup.value.ADRESSE_AG,
             TEL_AG: this.mergedFormGroup.value.TEL_AG,
-            PASSWORD: this.mergedFormGroup.value.PASSWORD,
+            PASSWORD: "1234",
             PHOTO: null,
             GENRE: this.mergedFormGroup.value.GENRE,
             ACTIVATION: "activé",
@@ -99,7 +98,7 @@ export class NewUserComponent {
           text: "Un nouvel utilisateur a été enregistré.",
           icon: "success"
         });
-        this._router.navigate(['/user'])
+        this._router.navigate(['PB/user'])
       }
     });
     

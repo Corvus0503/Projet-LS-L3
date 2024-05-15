@@ -43,16 +43,23 @@ const getAdminList = async (req, res) => {
   }
 };
 
+const getAdminDet = async(req,res, id)=>{
+  const query = 'SELECT * FROM AGENT WHERE MATRICULE=:id'
+  try {
+      const connection = await getConnection();
+      const result=await connection.execute(query, [id]);
+      res.json(result.rows);
+    await connection.close();
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal server error' });
+  }
+}
+
 const addAdmin = async (req, res, MATRICULE, FONCTION_AG, MAIL_AG, NOM_AG, NOM_UTIL_AG, TYPE_AG, PRENOM_AG, ADRESSE_AG, TEL_AG, PASSWORD, PHOTO, GENRE, ACTIVATION, CODE_DIVISION, photoPath) => {
   console.log(PHOTO)
   try {
-    // PHOTO.mv(photoPath, async (error) =>{
-    //   if (error) {
-    //     console.error('Error while moving photo:', error.message);
-    //     return res.status(500).json({ message: 'Failed to upload photo' });
-    //   }
-      
-    // })
+    
     const connection = await getConnection()
     const result = await connection.execute(
       'INSERT INTO AGENT (MATRICULE, FONCTION_AG, MAIL_AG, NOM_AG, NOM_UTIL_AG, TYPE_AG, PRENOM_AG, ADRESSE_AG, TEL_AG, PASSWORD, PHOTO, GENRE, ACTIVATION, CODE_DIVISION) values (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11, :12, :13, :14)', 
@@ -247,23 +254,12 @@ const addService = async (req, res, CODE_SER, LIBELLE, ENTETE1, ENTETE2, ENTETE3
   }
 };
 
-const updateService = async (CODE_SER, LIBELLE, ENTETE1, ENTETE2, ENTETE3, ENTETE4, ENTETE5, SIGLE, VILLE, ADRESSE, CONTACT, id) => {
+const updateService = async (req, res, CODE_SER, LIBELLE, ENTETE1, ENTETE2, ENTETE3, ENTETE4, ENTETE5, SIGLE, VILLE, ADRESSE, CONTACT, id) => {
   try {
     const connection = await getConnection();
-    const result = await connection.execute('UPDATE SERVICE SET CODE_SER = :CODE_SER, LIBELLE = :LIBELLE, ENTETE1 = :ENTETE1, ENTETE2 = :ENTETE2, ENTETE3 = :ENTETE3, ENTETE4 = :ENTETE4, ENTETE5 = :ENTETE5, SIGLE = :SIGLE, VILLE = :VILLE, ADRESSE = :ADRESSE, CONTACT = :CONTACT WHERE CODE_SER = :id', {
-      CODE_SER: CODE_SER,
-      LIBELLE: LIBELLE,
-      ENTETE1: ENTETE1,
-      ENTETE2: ENTETE2,
-      ENTETE3: ENTETE3,
-      ENTETE4: ENTETE4,
-      ENTETE5: ENTETE5,
-      SIGLE: SIGLE,
-      VILLE: VILLE,
-      ADRESSE: ADRESSE,
-      CONTACT: CONTACT,
-      id: id
-    });
+    const result = await connection.execute('UPDATE SERVICE SET CODE_SER = :CODE_SER, LIBELLE = :LIBELLE, ENTETE1 = :ENTETE1, ENTETE2 = :ENTETE2, ENTETE3 = :ENTETE3, ENTETE4 = :ENTETE4, ENTETE5 = :ENTETE5, SIGLE = :SIGLE, VILLE = :VILLE, ADRESSE = :ADRESSE, CONTACT = :CONTACT WHERE CODE_SER = :id', 
+    [CODE_SER, LIBELLE, ENTETE1, ENTETE2, ENTETE3, ENTETE4, ENTETE5, SIGLE, VILLE, ADRESSE, CONTACT, id]);
+    res.json(result.rows);
     await connection.commit();
     await connection.close();
     return result.rows;
@@ -862,6 +858,7 @@ module.exports = {
     getAdmin,
     getAdminList,
     addAdmin,
+    getAdminDet,
     updateAdmin,
     deleteAdmin,
     getCompte,

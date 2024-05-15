@@ -11,6 +11,7 @@ import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
 import { MatIconModule } from '@angular/material/icon';
 import Swal from 'sweetalert2';
 import { ModServiceComponent } from './mod-service/mod-service.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-service',
@@ -24,13 +25,16 @@ import { ModServiceComponent } from './mod-service/mod-service.component';
     MatFormFieldModule,
     MatSortModule,
     MatPaginatorModule,
-    ModServiceComponent
+    ModServiceComponent,
+    MatProgressSpinnerModule
   ],
   templateUrl: './service.component.html',
   styleUrl: './service.component.css'
 })
 export class ServiceComponent implements AfterViewInit {
   dataSource : any;
+  donnee : any
+  isLoaded = false
 
   thList = [
     "CODE_SER", 
@@ -51,8 +55,18 @@ export class ServiceComponent implements AfterViewInit {
     console.log(this.dataSource)
   }
 
-  @ViewChild(MatSort) sort: any = MatSort;
-  @ViewChild(MatPaginator) paginator :any = MatPaginator;
+  @ViewChild(MatSort, {static: false})
+  set sort(value: MatSort) {
+    if (this.dataSource){
+      this.dataSource.sort = value;
+    }
+  }
+  @ViewChild(MatPaginator, {static: false})
+  set paginator(value: MatPaginator) {
+    if (this.dataSource){
+      this.dataSource.paginator = value;
+    }
+  }
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
@@ -62,7 +76,16 @@ export class ServiceComponent implements AfterViewInit {
   getService() {
     this._api.getAll('/service').subscribe((data: Service[]) => {
       this.dataSource = new MatTableDataSource(data);
+      this.isLoaded = true;
     })
+  }
+
+  getInfo(don: any){
+    this.donnee = don
+  }
+
+  infoChangedHandler(donnees: any){
+    this.donnee = donnees
   }
 
   deleteService(id: string){

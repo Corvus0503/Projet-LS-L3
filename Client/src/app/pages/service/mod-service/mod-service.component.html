@@ -1,13 +1,15 @@
-<button mat-button color="primary" type="button" (click)="onOpenModal()">
+<div class="but-cont">
+  <button mat-raised-button color="primary" type="button" (click)="onOpenModal()">
     Ajouter
-</button>
+  </button>
+</div>
 
 <div class="modal" id="myModal">
     <div class="modal-overlay">
         <form [formGroup]="mergedFormGroup" class="modal-pop" action="">
             <div class="inp-cont">
                 <div class="cont1">
-                    <mat-form-field appearance="outline">
+                    <mat-form-field *ngIf="!mod" appearance="outline">
                         <mat-label>Code</mat-label>
                         <input matInput  formControlName="CODE_SER" required>
                       </mat-form-field><br>
@@ -55,7 +57,8 @@
                         <input matInput  formControlName="CONTACT" required>
                       </mat-form-field><br>
                       <div>
-                        <button mat-button color="primary" type="button" (click)="onsubmit($event)">Enregistrer</button>
+                        <button *ngIf="mod == false" mat-button color="primary" type="button" (click)="onsubmit($event)">Enregistrer</button>
+                        <button *ngIf="mod == true" mat-button color="primary" type="button" (click)="editSer($event)">Modifier</button>
                         <button mat-button color="Danger" (click)="onCloseModal()">Annuler</button>
                       </div>
                 </div>

@@ -43,11 +43,12 @@ export class AppComponent {
   userName: string = ''
 
   navList = [
-    {name: "Dashboard", icon: "../assets/img/dashboard_layout_28px.png", path: "/dashboard"},
-    {name: "Prevision", icon: "../assets/img/calculator_23px.png", path: "/prevision"},
-    {name: "Besoin", icon: "../assets/img/view_details_28px.png", path: "/besoin"},
-    {name: "Utilisateur", icon: "../assets/img/user_28px.png", path: "/user"},
-    {name: "Deconnexion", icon: "../assets/img/exit_25px.png", path: "/dashboard"},
+    {name: "Dashboard", icon: "../assets/img/dashboard_layout_28px.png", path: "PB/dashboard"},
+    {name: "Historique", icon: "../assets/img/view_details_28px.png", path: "PB/historique"},
+    {name: "Service", icon: "../assets/img/service_28px.png", path: "PB/service"},
+    {name: "Division", icon: "../assets/img/calculator_23px.png", path: "PB/division"},
+    {name: "Utilisateur", icon: "../assets/img/user_28px.png", path: "PB/user"},
+    {name: "Deconnexion", icon: "../assets/img/exit_25px.png", path: "PB/dashboard"},
   ]
 
 

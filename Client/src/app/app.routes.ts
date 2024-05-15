@@ -8,16 +8,20 @@ import { NewUserComponent } from './pages/user/new-user/new-user.component';
 import { ServiceComponent } from './pages/service/service.component';
 import { DivisionComponent } from './pages/division/division.component';
 import { HistoriqueComponent } from './pages/historique/historique.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { DetUserComponent } from './pages/user/det-user/det-user.component';
 
 export const routes: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'PB', canActivate: [AuthGuardService], children: [
         {path: 'dashboard', component: DashboardComponent},
         {path: 'user', component: UserComponent},
+        {path: 'user/:id', component: DetUserComponent},
         {path: 'new_user', component: NewUserComponent},
         {path: 'service', component: ServiceComponent},
         {path: 'division', component: DivisionComponent},
         {path: 'historique', component: HistoriqueComponent},
+        {path: 'profile', component: ProfileComponent},
     ]},
     {path: '', redirectTo: 'login', pathMatch: 'full'},
     {path: '**', component: ErrorPageComponent}

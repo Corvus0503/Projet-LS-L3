@@ -21,11 +21,8 @@ export class ApiService {
 
   find(url: any, id: any): Observable<any> {
     return this.httpClient.get(`${this.baseURL}${url}${id}`)
-
     .pipe(
-
       catchError(this.errorHandler)
-
     )
    }
   postTypeRequest(url: any, payload: any): Observable<any> {
@@ -35,7 +32,7 @@ export class ApiService {
     );
   }
 
-  update(url: string, id: number, payload: any): Observable<any>{
+  update(url: string, id: string, payload: any): Observable<any>{
     return this.httpClient.put(`${this.baseURL}${url}${id}`, payload, {headers: this.httpHeaders})
     .pipe(
       catchError(this.errorHandler)

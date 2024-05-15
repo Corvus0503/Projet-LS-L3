@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { AuthService } from '../../services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { Agent } from '../../interfaces/agent';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -19,11 +23,16 @@ export class LoginComponent implements OnInit {
   agents : Agent[] = []
 
   constructor(
+    private _formBuilder: FormBuilder,
     private _api: ApiService,
     private _auth: AuthService,
     private _router: Router
   ){}
 
+  loginForm = this._formBuilder.group({
+    pseudo: ['', Validators.required],
+    mdp: ['', Validators.required],
+  })
   ngOnInit(): void {
       this.isUserLogin()
       if (this.isLogin == true){
@@ -31,9 +40,9 @@ export class LoginComponent implements OnInit {
       }
   }
 
-  onSubmit(form: NgForm){
-    console.log("user data : ", form.value)
-    this._api.postTypeRequest('/admin', form.value).subscribe((data: Agent[]) => {
+  onSubmit(){
+    console.log("user data : ", this.loginForm.value)
+    this._api.postTypeRequest('/admin', this.loginForm.value).subscribe((data: Agent[]) => {
       this.agents = data
       console.log(this.agents)
       if (this.agents != null){
@@ -41,7 +50,11 @@ export class LoginComponent implements OnInit {
         this._router.navigate(['/PB/dashboard'])
       } else {
         console.log('error')
-        alert('Pseudo ou mot de passe incorrect')
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Nom d\'utilisateur ou mot de passe incorrect ou mot de passer incorrect',
+      })
       }
     })
   }

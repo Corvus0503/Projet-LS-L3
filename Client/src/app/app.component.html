@@ -3,14 +3,14 @@
     <mat-icon><img src="../assets/img/menu_28px.png" alt=""></mat-icon>
   </button>
   <div class="info-cont">
-    <img src={{userAv}} alt="" class="avatar">
     {{userName}}
+    <img src={{userAv}} alt="" class="avatar">
   </div>
 </mat-toolbar>
 <mat-sidenav-container  autosize>
   <mat-sidenav *ngIf="isLogin" [ngClass]="!isCollapsed ? 'expanded' : ''" [mode]="isMobile ? 'over' : 'side'" [opened]="isMobile ? 'false' : 'true'">
     <mat-nav-list *ngFor="let item of navList">
-      <a route="item.path" mat-list-item>
+      <a [routerLink]="[item.path]" mat-list-item>
         <span class="entry">
            <mat-icon><img src={{item.icon}} alt=""></mat-icon>
            <span class="it-sp" *ngIf="!isCollapsed">{{item.name}}</span>

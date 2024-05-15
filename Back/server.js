@@ -6,7 +6,7 @@ const bodyParser = require('body-parser')
 const path = require('path');
 const http = require('http')
 const { 
-    getAdmin, getAdminList, addAdmin, updateAdmin, deleteAdmin,
+    getAdmin, getAdminList, getAdminDet, addAdmin, updateAdmin, deleteAdmin,
     getCompte, addCompte, updateCompte, deleteCompte,
     getCategorie, addCategorie, updateCategorie, deleteCategorie,
     getService, addService, updateService, deleteService,
@@ -112,13 +112,13 @@ io.on("connection", (socket) => {
     
 });
 
-// Multer configuration for file upload
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, '../Front/src/assets/uploads/'); // Set the destination folder for file uploads
+      cb(null, '../Client/src/assets/uploads/'); 
     },
     filename: function (req, file, cb) {
-      cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname)); // Use original filename with timestamp
+      cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname)); 
     },
   });
   
@@ -130,6 +130,11 @@ const storage = multer.diskStorage({
 app.get('/admin/userList', function (req, res) {
     getAdminList(req, res);
   })
+
+app.get('/admin/:id', function (req, res) {
+    const { id } = req.params;
+    getAdminDet(req, res, id);
+})
 
 app.post('/admin', function (req, res) {
     let {pseudo, mdp} = req.body

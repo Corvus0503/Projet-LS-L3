@@ -1,0 +1,158 @@
+<div class="main-content">
+    <!-- Top navbar -->
+    
+    <!-- Page content -->
+    <div class="container-fluid mt--7">
+      <div class="row">
+        <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+          <div class="card card-profile shadow">
+            <div class="row justify-content-center">
+              <div class="col-lg-3 order-lg-2">
+                <div class="card-profile-image">
+                  <a href="#">
+                    <img src={{userAv}} class="rounded-circle">
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="card-body pt-0 pt-md-4">
+              <div class="row">
+                <div class="col">
+                  <div class="card-profile-stats d-flex justify-content-center mt-md-5">
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="text-center">
+                <h1>
+                  {{userDet.NOM_UTIL_AG}}<span class="font-weight-light"></span>
+                </h1>
+                <div class="h5 mt-4">
+                    <i class="ni business_briefcase-24 mr-2"></i>{{userDet.FONCTION_AG}}
+                  </div>
+                <div class="h5 font-weight-300">
+                  <i class="ni location_pin mr-2"></i> {{userDet.ADRESSE_AG}}
+                </div>
+                
+                <div>
+                  <i class="ni education_hat mr-2"></i>{{userDet.TEL_AG}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-8 order-xl-1">
+          <div class="card bg-secondary shadow">
+            <div class="card-header bg-white border-0">
+              <div class="row align-items-center">
+                <div class="col-8">
+                  <h1 class="mb-0">Infomations</h1>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <form [formGroup]="mergedFormGroup">
+                <h6 class="heading-small text-muted mb-4">Information utiilisateur</h6>
+                <div class="inp-cont">
+                    <div class="cont1">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Nom</mat-label>
+                            <input matInput  formControlName="NOM_AG" required>
+                          </mat-form-field><br>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Prenom</mat-label>
+                            <input matInput  formControlName="PRENOM_AG" required>
+                          </mat-form-field><br>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Sexe</mat-label>
+                            <mat-select formControlName="GENRE">
+                              <mat-option value="M">Homme</mat-option>
+                              <mat-option value="F">Femme</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                          
+                    </div>
+                    <div class="cont2">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Adresse</mat-label>
+                            <input matInput  formControlName="ADRESSE_AG" required>
+                          </mat-form-field><br>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Email</mat-label>
+                            <input matInput  formControlName="MAIL_AG" required>
+                          </mat-form-field><br>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Contact</mat-label>
+                            <input matInput  formControlName="TEL_AG" required>
+                          </mat-form-field>
+                    </div>
+                </div>
+                <hr class="my-4">
+
+                <h6 class="heading-small text-muted mb-4">Fonction</h6>
+                <div class="inp-cont" >
+                    <div class="cont1">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Matricule</mat-label>
+                        <input matInput  formControlName="MATRICULE" required>
+                      </mat-form-field><br>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Pseudo</mat-label>
+                        <input matInput  formControlName="NOM_UTIL_AG" required>
+                      </mat-form-field><br>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Fonction</mat-label>
+                        <input matInput  formControlName="FONCTION_AG" required>
+                      </mat-form-field>
+                  </div>
+                  <div class="cont2">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Code Division</mat-label>
+                      <input matInput  formControlName="CODE_DIVISION" required>
+                    </mat-form-field><br>
+                        <mat-form-field appearance="outline">
+                          <mat-label>Type Compte</mat-label>
+                          <mat-select formControlName="TYPE_AG">
+                              <mat-option value="CD">CD</mat-option>
+                              <mat-option value="BAG">BAG</mat-option>
+                              <mat-option value="Admin">Admin</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                  </div>
+                  </div>
+                <hr class="my-4">
+                <!-- Description -->
+                <h6 class="heading-small text-muted mb-4">Securité</h6>
+                <div class="pl-lg-4">
+                  <button mat-button color="primary" type="button" (click)="onOpenModal()">
+                    Ajouter
+                  </button>
+                  <div class="modal" id="myModal">
+                    <div class="modal-overlay">
+                        <form [formGroup]="mergedFormGroup" class="modal-pop" action="">
+                                  <mat-form-field appearance="outline">
+                                    <mat-label>Nouveau mot de passe</mat-label>
+                                    <input matInput  formControlName="PASSWORD" required>
+                                  </mat-form-field><br>
+
+                                  <mat-form-field appearance="outline">
+                                    <mat-label>Confirmer nouveau mot de passe</mat-label>
+                                    <input matInput  formControlName="C_PASSWORD" required>
+                                  </mat-form-field><br>                   
+                    
+                                  <div>
+                                      <button mat-button color="primary" type="button" (click)="onsubmit($event)">Enregistrer</button>
+                                      <button mat-button color="Danger" (click)="onCloseModal()">Annuler</button>
+                                  </div>
+                            
+                        </form>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
